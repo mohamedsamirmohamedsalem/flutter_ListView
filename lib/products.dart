@@ -1,16 +1,39 @@
 import 'package:flutter/material.dart';
+import './pages/FlowerDetailsScaffold.dart';
 
 class Products extends StatelessWidget {
-  final List<String> products;
+  final List<Map> products;
+  final Function deleteProduct;
 
-  Products(this.products);
+  Products(this.products, this.deleteProduct);
 
   Widget updateBuildItiem(BuildContext context, int index) {
     return Card(
       child: Column(
         children: <Widget>[
-          Image.asset('assets/flower.jpg'),
-          Text(products[index])
+          Text('Flower Details'),
+          Image.asset(products[index]['image']),
+          ButtonBar(
+            alignment: MainAxisAlignment.center,
+            children: <Widget>[
+              FlatButton(
+                child: Text('Details'),
+                onPressed: () => Navigator.push<bool>(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) => FlowerDetailsScaffold(
+                      products[index]['title'],
+                      products[index]['image'],
+                    ),
+                  ),
+                ).then((bool value) {
+                  if (value) {
+                    deleteProduct(index);
+                  }
+                }),
+              ),
+            ],
+          ),
         ],
       ),
     );

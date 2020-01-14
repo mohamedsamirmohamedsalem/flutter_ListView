@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:test_app/ProductManager.dart';
-import 'package:test_app/ProductsControl.dart';
+import 'package:test_app/pages/HomeScaffold.dart';
 
 void main() {
   runApp(MyApp());
@@ -16,14 +16,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.deepPurple,
         accentColor: Colors.deepOrange,
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('List View'),
-        ),
-        body: Container(
-          child: ProductManager(startingProduct: 'initial data'),
-        ),
-      ),
+      home: HomeScaffold(),
     );
   }
 }

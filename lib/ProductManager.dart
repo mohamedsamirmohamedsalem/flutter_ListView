@@ -15,11 +15,17 @@ class ProductManager extends StatefulWidget {
 
 /////////////////////////////////////////////////////
 class ProductManagerState extends State<ProductManager> {
-  List<String> products = [];
+  List<Map> products = [];
 
-  void addProduct(String product) {
+  void addProduct(Map product) {
     setState(() {
       products.add(product);
+    });
+  }
+
+  void deleteProduct(int index) {
+    setState(() {
+      products.removeAt(index);
     });
   }
 
@@ -33,7 +39,7 @@ class ProductManagerState extends State<ProductManager> {
           child: ProductsControl(addProduct),
         ),
         Expanded(
-          child: Products(products),
+          child: Products(products, deleteProduct),
         ),
       ],
     );
